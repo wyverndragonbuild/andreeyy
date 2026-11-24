@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d1f33">
+    <title>Зимний драйв · Конкурс на тюбингах</title>
+
+    <!-- Ускорение соединения с доменом музыки и целевыми сайтами -->
+    <link rel="preconnect" href="https://zvukitop.com" crossorigin>
+    <link rel="dns-prefetch" href="https://zvukitop.com">
+    <link rel="preconnect" href="https://buddingbranchpress.com" crossorigin>
+    <link rel="dns-prefetch" href="https://buddingbranchpress.com">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0d1f33;
+            /* Лёгкий фон: градиенты + «снежинки» через radial-gradient (без тяжёлого SVG) */
+            background-image:
+                radial-gradient(circle at 15% 5%, rgba(90, 200, 255, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 85% 95%, rgba(255, 170, 40, 0.15) 0%, transparent 40%),
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.35), transparent),
+                radial-gradient(1.5px 1.5px at 80px 70px, rgba(255,255,255,0.28), transparent),
+                radial-gradient(1.8px 1.8px at 140px 20px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(1.2px 1.2px at 180px 110px, rgba(255,255,255,0.22), transparent),
+                radial-gradient(2px 2px at 40px 150px, rgba(255,255,255,0.25), transparent),
+                radial-gradient(1.4px 1.4px at 220px 60px, rgba(255,255,255,0.3), transparent);
+            background-size: cover, cover, 260px 260px, 260px 260px, 260px 260px, 260px 260px, 260px 260px, 260px 260px;
+            background-repeat: no-repeat, no-repeat, repeat, repeat, repeat, repeat, repeat, repeat;
+            color: #e8eef5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 12px 40px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ===== ШАПКА ===== */
+        .header {
+            text-align: center;
+            padding: 12px 0 10px;
+            position: relative;
+        }
+
+        .snowflakes {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            overflow: hidden;
+            pointer-events: none;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.22);
+            letter-spacing: 14px;
+            animation: floatSnow 6s linear infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes floatSnow {
+            0% { transform: translate3d(0,-10px,0); opacity: 0.3; }
+            50% { transform: translate3d(0,8px,0); opacity: 0.7; }
+            100% { transform: translate3d(0,-10px,0); opacity: 0.3; }
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7dd3ff, #4aa8ff, #ffb84d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 2px 10px rgba(70, 170, 255, 0.35));
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand small {
+            font-size: 13px;
+            font-weight: 400;
+            display: block;
+            color: #9bb7d4;
+            -webkit-text-fill-color: #9bb7d4;
+            background: none;
+            margin-top: 2px;
+        }
+
+        .deadline-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 7px 22px;
+            border-radius: 60px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffd28a;
+            background: rgba(255, 170, 40, 0.14);
+            border: 1px solid rgba(255, 190, 80, 0.45);
+            box-shadow: 0 0 20px rgba(255, 170, 40, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== ГЕРОЙ ===== */
+        .hero {
+            margin-top: 16px;
+            padding: 26px 20px 24px;
+            border-radius: 28px;
+            background: linear-gradient(145deg, #122a44, #0a1728);
+            border: 1px solid rgba(90, 200, 255, 0.28);
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "🛷";
+            position: absolute;
+            top: -8px; left: 6px;
+            font-size: 52px;
+            opacity: 0.16;
+            transform: rotate(-18deg);
+        }
+
+        .hero::after {
+            content: "❄️";
+            position: absolute;
+            bottom: -10px; right: 8px;
+            font-size: 56px;
+            opacity: 0.14;
+            transform: rotate(10deg);
+        }
+
+        .hero h1 {
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #ffffff, #b9e8ff, #ffcc80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            margin-top: 12px;
+            color: #b0c6dd;
+            font-size: 14px;
+            line-height: 1.55;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero .timer-highlight {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 6px 18px;
+            border-radius: 40px;
+            background: rgba(255, 170, 40, 0.16);
+            border: 1px dashed rgba(255, 190, 80, 0.5);
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffd28a;
+            letter-spacing: 0.8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        .section {
+            margin-top: 22px;
+            padding: 18px 14px 20px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: #d8ecff;
+            letter-spacing: 0.3px;
+            margin-bottom: 4px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #98abc0;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        /* ===== ТАБЛИЦА УЧАСТНИКОВ ===== */
+        .voting-table {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .voting-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px 10px 8px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background 0.25s, border-color 0.25s, transform 0.2s;
+            position: relative;
+            transform: translateZ(0);
+        }
+
+        .voting-row:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 190, 80, 0.4);
+            transform: scale(1.005);
+        }
+
+        /* ===== ФАВОРИТ — ПЕРВЫЙ УЧАСТНИК ===== */
+        .voting-row.favorite {
+            border: 2px solid rgba(255, 210, 90, 0.85);
+            background: linear-gradient(135deg, rgba(255, 200, 60, 0.18), rgba(255, 255, 255, 0.03));
+            box-shadow:
+                0 0 32px rgba(255, 200, 60, 0.35),
+                0 0 0 3px rgba(255, 220, 130, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: scale(1.03);
+            margin-bottom: 6px;
+            animation: favGlow 3s ease-in-out infinite;
+            will-change: box-shadow;
+        }
+
+        @keyframes favGlow {
+            0% { box-shadow: 0 0 24px rgba(255, 200, 60, 0.3), 0 0 0 3px rgba(255, 220, 130, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+            50% { box-shadow: 0 0 42px rgba(255, 210, 70, 0.55), 0 0 0 5px rgba(255, 220, 130, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+            100% { box-shadow: 0 0 24px rgba(255, 200, 60, 0.3), 0 0 0 3px rgba(255, 220, 130, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        }
+
+        .voting-row.favorite:hover {
+            transform: scale(1.045);
+            border-color: #ffd966;
+        }
+
+        .voting-row.favorite .avatar {
+            background: radial-gradient(circle at 30% 30%, #ffcf5c, #b87a00);
+            color: #2a1a00;
+            border: 2px solid #ffe28a;
+            box-shadow: 0 0 22px rgba(255, 210, 80, 0.7);
+            width: 50px;
+            height: 50px;
+            min-width: 50px;
+            font-size: 21px;
+            position: relative;
+        }
+
+        .voting-row.favorite .avatar::after {
+            content: "👑";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+            animation: crownFloat 2.4s ease-in-out infinite;
+        }
+
+        @keyframes crownFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-4px); }
+        }
+
+        .leader-tag {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            color: #2a1a00;
+            background: linear-gradient(135deg, #ffe28a, #ffb800);
+            vertical-align: middle;
+            box-shadow: 0 2px 8px rgba(255, 190, 0, 0.5);
+        }
+
+        .voting-row.favorite .user-name {
+            background: linear-gradient(135deg, #ffe28a, #ffc233, #ffdf80);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 16px;
+            font-weight: 900;
+            filter: drop-shadow(0 0 12px rgba(255, 200, 0, 0.4));
+        }
+
+        .voting-row.favorite .user-id {
+            color: #ffd28a;
+            font-weight: 600;
+        }
+
+        .rank {
+            width: 32px;
+            min-width: 32px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: #8ee0ff;
+            text-shadow: 0 0 18px rgba(80, 200, 255, 0.4);
+        }
+
+        .voting-row.favorite .rank {
+            color: #ffd700;
+            font-size: 24px;
+            text-shadow: 0 0 24px rgba(255, 215, 0, 0.9);
+        }
+
+        .rank.silver { color: #d0d0d0; text-shadow: 0 0 18px rgba(200, 200, 200, 0.5); }
+        .rank.bronze { color: #e09a5a; text-shadow: 0 0 18px rgba(224, 154, 90, 0.5); }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #3a6a9a, #142a44);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #d4efff;
+            border: 2px solid rgba(90, 200, 255, 0.25);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s;
+        }
+
+        .user-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .user-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #f0f4fa;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-id {
+            font-size: 10px;
+            color: #8fa4bc;
+            margin-top: 2px;
+            letter-spacing: 0.3px;
+        }
+
+        /* ===== КНОПКА ГОЛОСОВАНИЯ ===== */
+        .vote-btn {
+            position: relative;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #ff9a1f, #ff6b00);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 11px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow:
+                0 4px 20px rgba(255, 120, 0, 0.5),
+                0 0 0 0 rgba(255, 140, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 220, 150, 0.5);
+            z-index: 3;
+            overflow: hidden;
+            animation: votePulse 2s infinite;
+            /* Убираем задержку тапа на мобильных */
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes votePulse {
+            0% {
+                box-shadow:
+                    0 4px 20px rgba(255, 120, 0, 0.5),
+                    0 0 0 0 rgba(255, 140, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            }
+            60% {
+                box-shadow:
+                    0 4px 24px rgba(255, 120, 0, 0.7),
+                    0 0 0 10px rgba(255, 140, 0, 0),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            }
+            100% {
+                box-shadow:
+                    0 4px 20px rgba(255, 120, 0, 0.5),
+                    0 0 0 0 rgba(255, 140, 0, 0),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+            }
+        }
+
+        .vote-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.5) 50%, transparent 80%);
+            animation: shine 2.6s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            55% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .vote-btn:hover {
+            background: linear-gradient(135deg, #ffb038, #ff7b00);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow:
+                0 8px 30px rgba(255, 140, 0, 0.8),
+                0 0 0 4px rgba(255, 170, 40, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
+            animation: none;
+        }
+
+        .vote-btn:active {
+            transform: translateY(1px) scale(0.98);
+            box-shadow:
+                0 2px 10px rgba(255, 120, 0, 0.5),
+                inset 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .vote-btn.featured {
+            background: linear-gradient(135deg, #ffcf3d, #ff9500);
+            color: #2a1a00;
+            font-size: 12px;
+            padding: 13px 20px;
+            border: 2px solid #fff1b8;
+            box-shadow:
+                0 6px 28px rgba(255, 180, 0, 0.75),
+                0 0 0 0 rgba(255, 200, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            animation: featuredPulse 1.6s infinite;
+        }
+
+        @keyframes featuredPulse {
+            0% {
+                box-shadow:
+                    0 6px 28px rgba(255, 180, 0, 0.75),
+                    0 0 0 0 rgba(255, 210, 0, 0.7),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            }
+            60% {
+                box-shadow:
+                    0 8px 32px rgba(255, 190, 0, 0.9),
+                    0 0 0 12px rgba(255, 210, 0, 0),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            }
+            100% {
+                box-shadow:
+                    0 6px 28px rgba(255, 180, 0, 0.75),
+                    0 0 0 0 rgba(255, 210, 0, 0),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .vote-btn.featured::after {
+            content: "👑";
+            position: absolute;
+            top: -10px;
+            right: -8px;
+            font-size: 18px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+            animation: crownBob 1.8s ease-in-out infinite;
+        }
+
+        @keyframes crownBob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(8deg); }
+        }
+
+        .vote-btn.featured:hover {
+            background: linear-gradient(135deg, #ffdb5c, #ffa61f);
+            transform: translateY(-3px) scale(1.07);
+            box-shadow:
+                0 10px 40px rgba(255, 200, 0, 1),
+                0 0 0 5px rgba(255, 210, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .vote-btn.featured:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* ===== ПРИЗ ===== */
+        .prize-card {
+            margin-top: 22px;
+            padding: 24px 18px 22px;
+            border-radius: 26px;
+            text-align: center;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255, 170, 40, 0.22), transparent 55%),
+                linear-gradient(145deg, #1a2c42, #0d1826);
+            border: 1px solid rgba(255, 190, 80, 0.45);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+            animation: prizeGlow 4s ease-in-out infinite;
+            will-change: box-shadow;
+        }
+
+        @keyframes prizeGlow {
+            0% { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 170, 40, 0.15); }
+            50% { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 42px rgba(255, 170, 40, 0.35); }
+            100% { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 170, 40, 0.15); }
+        }
+
+        .prize-card::before {
+            content: "❄";
+            position: absolute;
+            top: 8px; left: 14px;
+            font-size: 32px;
+            opacity: 0.25;
+            color: #8ee0ff;
+            animation: twinkle 2.4s infinite alternate;
+        }
+
+        .prize-card::after {
+            content: "🎿";
+            position: absolute;
+            bottom: 8px; right: 14px;
+            font-size: 28px;
+            opacity: 0.25;
+            animation: twinkle 2.8s infinite alternate-reverse;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.15; transform: scale(0.9) rotate(-4deg); }
+            100% { opacity: 0.5; transform: scale(1.08) rotate(4deg); }
+        }
+
+        .prize-icon {
+            font-size: 52px;
+            line-height: 1;
+            filter: drop-shadow(0 0 22px rgba(255, 190, 60, 0.55));
+            margin-bottom: 4px;
+        }
+
+        .prize-card h2 {
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffd28a;
+            letter-spacing: 1px;
+            text-shadow: 0 0 30px rgba(255, 180, 40, 0.4);
+        }
+
+        .prize-name {
+            margin-top: 6px;
+            font-size: 19px;
+            font-weight: 800;
+            color: #ffe9c2;
+            line-height: 1.3;
+        }
+
+        .prize-name.alt {
+            font-size: 16px;
+            color: #ffc266;
+            margin-top: 4px;
+        }
+
+        .prize-desc {
+            margin-top: 10px;
+            color: #b8c7d9;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .prize-note {
+            margin-top: 12px;
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            background: rgba(255, 170, 40, 0.14);
+            border: 1px dashed rgba(255, 190, 80, 0.5);
+            color: #ffd28a;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ===== ХАРАКТЕРИСТИКИ ===== */
+        .features {
+            margin-top: 22px;
+            padding: 18px 14px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            margin: 6px 0;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #d7e2f0;
+            font-size: 13px;
+            line-height: 1.35;
+            border-left: 3px solid rgba(255, 170, 40, 0.7);
+            transition: background 0.2s;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-item span {
+            font-size: 18px;
+            min-width: 26px;
+            text-align: center;
+        }
+
+        /* ===== ТАЙМЕР ===== */
+        .countdown-section {
+            margin-top: 22px;
+            padding: 22px 16px 20px;
+            border-radius: 26px;
+            background: linear-gradient(145deg, #14253a, #0b1622);
+            border: 1px solid rgba(90, 200, 255, 0.3);
+            box-shadow: 0 0 40px rgba(60, 170, 255, 0.06);
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 15px;
+            color: #9fb5d0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .timer-block {
+            min-width: 68px;
+            padding: 10px 8px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 190, 80, 0.3);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .timer-num {
+            font-size: 30px;
+            font-weight: 900;
+            color: #ffd28a;
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 180, 40, 0.45);
+            font-variant-numeric: tabular-nums;
+            transition: color 0.2s;
+        }
+
+        .timer-label {
+            font-size: 10px;
+            color: #92a9c2;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .timer-note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: #ffc266;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+
+        .timer-note strong {
+            color: #ffd28a;
+        }
+
+        /* ===== ШАГИ ===== */
+        .steps {
+            margin-top: 22px;
+            padding: 18px 14px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .step-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 10px 12px;
+            margin: 6px 0;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #d0dcec;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .step-num {
+            min-width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9a1f, #ff6b00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #ffffff;
+            font-size: 13px;
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+        }
+
+        /* ===== ОТЗЫВЫ ===== */
+        .reviews {
+            margin-top: 22px;
+            padding: 18px 14px;
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .review-item {
+            padding: 12px 14px;
+            margin: 8px 0;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid rgba(255, 170, 40, 0.7);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .review-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #3a6a9a, #142a44);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: #d4efff;
+        }
+
+        .review-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #e8f0fa;
+        }
+
+        .review-stars {
+            color: #ffc266;
+            font-size: 12px;
+            letter-spacing: 1px;
+            margin-left: auto;
+        }
+
+        .review-text {
+            font-size: 12.5px;
+            color: #b2c4d8;
+            line-height: 1.5;
+            margin-top: 2px;
+        }
+
+        .review-date {
+            font-size: 10px;
+            color: #6f869e;
+            margin-top: 4px;
+        }
+
+        /* ===== CTA ===== */
+        .cta-bottom {
+            margin-top: 26px;
+            padding: 22px 16px;
+            border-radius: 24px;
+            text-align: center;
+            background: linear-gradient(135deg, #ff8c00, #c95a00);
+            box-shadow: 0 12px 35px rgba(255, 120, 0, 0.4);
+            border: 1px solid rgba(255, 220, 150, 0.4);
+        }
+
+        .cta-bottom strong {
+            display: block;
+            font-size: 19px;
+            font-weight: 900;
+            color: #fff6e0;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-bottom span {
+            display: block;
+            margin-top: 6px;
+            font-size: 13px;
+            color: #ffe6b8;
+            font-weight: 500;
+        }
+
+        /* ===== ФУТЕР ===== */
+        .footer {
+            margin-top: 20px;
+            padding: 16px 12px 10px;
+            text-align: center;
+            color: #6b8099;
+            font-size: 10.5px;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Музыкальная кнопка */
+        .music-toggle {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #17304a, #0c1928);
+            border: 1px solid rgba(255, 190, 80, 0.5);
+            color: #ffd28a;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            transition: all 0.3s;
+        }
+
+        .music-toggle:hover {
+            background: linear-gradient(145deg, #1f3d5c, #102436);
+            box-shadow: 0 0 28px rgba(255, 170, 40, 0.35);
+            transform: scale(1.05);
+        }
+
+        .music-toggle.playing {
+            animation: musicPulse 1.8s infinite;
+        }
+
+        @keyframes musicPulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 170, 40, 0.4); }
+            70% { box-shadow: 0 0 0 14px rgba(255, 170, 40, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 170, 40, 0); }
+        }
+
+        /* Адаптив */
+        @media (max-width: 400px) {
+            .brand { font-size: 21px; }
+            .hero h1 { font-size: 24px; }
+            .timer-num { font-size: 24px; }
+            .timer-block { min-width: 58px; padding: 8px 6px; }
+            .vote-btn { padding: 10px 12px; font-size: 10px; }
+            .vote-btn.featured { padding: 11px 14px; font-size: 11px; }
+            .user-name { font-size: 13px; }
+            .voting-row.favorite .user-name { font-size: 14px; }
+            .avatar { width: 38px; height: 38px; min-width: 38px; font-size: 15px; }
+            .voting-row.favorite .avatar { width: 44px; height: 44px; min-width: 44px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="header">
+        <div class="snowflakes">❄ ❅ ❆ ❄ ❅ ❆</div>
+        <div class="brand">
+            Зимний Драйв
+            <small>конкурс любителей тюбинга</small>
+        </div>
+        <div class="deadline-badge">🎿 до 31 декабря 2026</div>
+    </header>
+
+    <!-- ===== ГЕРОЙ ===== -->
+    <section class="hero">
+        <h1>Голосуйте за лучших!</h1>
+        <p>Выберите участника, который покорил вас своим зимним драйвом, и помогите ему получить главный приз — сертификат на прокат тюбингов или поездку в Шерегеш!</p>
+        <div class="timer-highlight">⏳ голосование завершится 31 декабря</div>
+    </section>
+
+    <!-- ===== ТАБЛИЦА УЧАСТНИКОВ ===== -->
+    <section class="section">
+        <div class="section-title">🏆 ТОП-5 претендентов</div>
+        <div class="section-sub">Нажмите «ПРОГОЛОСОВАТЬ», чтобы поддержать участника</div>
+
+        <div class="voting-table">
+            <!-- 1 — ФАВОРИТ -->
+            <div class="voting-row favorite">
+                <div class="rank gold">1</div>
+                <div class="avatar">А</div>
+                <div class="user-info">
+                    <div class="user-name">Андрей Андреев</div>
+                    <div class="user-id">Участник №101</div>
+                </div>
+                <a class="vote-btn featured" href="https://buddingbranchpress.com/sbxwap5lz0byt3hgc5ko" target="_blank" rel="nofollow noopener noreferrer">ПРОГОЛОСОВАТЬ</a>
+            </div>
+            <!-- 2 -->
+            <div class="voting-row">
+                <div class="rank silver">2</div>
+                <div class="avatar">Д</div>
+                <div class="user-info">
+                    <div class="user-name">Дмитрий Морозов</div>
+                    <div class="user-id">Участник №102</div>
+                </div>
+                <a class="vote-btn" href="https://buddingbranchpress.com/sbxwap5lz0byt3hgc5ko" target="_blank" rel="nofollow noopener noreferrer">Проголосовать</a>
+            </div>
+            <!-- 3 -->
+            <div class="voting-row">
+                <div class="rank bronze">3</div>
+                <div class="avatar">Е</div>
+                <div class="user-info">
+                    <div class="user-name">Елена Снежная</div>
+                    <div class="user-id">Участник №103</div>
+                </div>
+                <a class="vote-btn" href="https://buddingbranchpress.com/sbxwap5lz0byt3hgc5ko" target="_blank" rel="nofollow noopener noreferrer">Проголосовать</a>
+            </div>
+            <!-- 4 -->
+            <div class="voting-row">
+                <div class="rank">4</div>
+                <div class="avatar">М</div>
+                <div class="user-info">
+                    <div class="user-name">Михаил Вьюгов</div>
+                    <div class="user-id">Участник №104</div>
+                </div>
+                <a class="vote-btn" href="https://buddingbranchpress.com/sbxwap5lz0byt3hgc5ko" target="_blank" rel="nofollow noopener noreferrer">Проголосовать</a>
+            </div>
+            <!-- 5 -->
+            <div class="voting-row">
+                <div class="rank">5</div>
+                <div class="avatar">О</div>
+                <div class="user-info">
+                    <div class="user-name">Ольга Метелица</div>
+                    <div class="user-id">Участник №105</div>
+                </div>
+                <a class="vote-btn" href="https://buddingbranchpress.com/sbxwap5lz0byt3hgc5ko" target="_blank" rel="nofollow noopener noreferrer">Проголосовать</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПРИЗ ===== -->
+    <section class="prize-card">
+        <div class="prize-icon">🛷❄️</div>
+        <h2>СУПЕР-ПРИЗ</h2>
+        <div class="prize-name">Сертификат на прокат тюбингов</div>
+        <div class="prize-name alt">в любом вашем городе</div>
+        <p class="prize-desc">Можно подарить знакомым — пусть зима запомнится ярким спуском с горы!</p>
+        <div class="prize-note">🎁 или поездка в Шерегеш на двоих</div>
+    </section>
+
+    <!-- ===== ХАРАКТЕРИСТИКИ ПРИЗА ===== -->
+    <section class="features">
+        <div class="section-title" style="margin-bottom:10px;">Что входит в приз</div>
+        <div class="feature-item"><span>🛷</span> Сертификат на прокат тюбингов в любом городе</div>
+        <div class="feature-item"><span>🎁</span> Возможность подарить сертификат знакомым</div>
+        <div class="feature-item"><span>⛷️</span> Альтернатива — поездка в Шерегеш на двоих</div>
+        <div class="feature-item"><span>🏔️</span> Трассы на любой уровень подготовки</div>
+        <div class="feature-item"><span>🔥</span> Горячий чай и зона отдыха на склоне</div>
+        <div class="feature-item"><span>📸</span> Фотосессия на фоне зимних гор</div>
+        <div class="feature-item"><span>🧤</span> Прокат всей экипировки включён</div>
+        <div class="feature-item"><span>🎿</span> Инструктаж и сопровождение гида</div>
+    </section>
+
+    <!-- ===== ТАЙМЕР ===== -->
+    <section class="countdown-section">
+        <div class="countdown-title">⏰ До конца голосования осталось</div>
+        <div class="timer" id="timer">
+            <div class="timer-block">
+                <div class="timer-num" id="hours">--</div>
+                <div class="timer-label">дней</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-num" id="hours2">--</div>
+                <div class="timer-label">часов</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-num" id="minutes">--</div>
+                <div class="timer-label">минут</div>
+            </div>
+            <div class="timer-block">
+                <div class="timer-num" id="seconds">--</div>
+                <div class="timer-label">секунд</div>
+            </div>
+        </div>
+        <div class="timer-note" id="timerNote">🔥 Успейте отдать свой голос до <strong>31 декабря 23:59</strong></div>
+    </section>
+
+    <!-- ===== КАК СТАТЬ ПОБЕДИТЕЛЕМ ===== -->
+    <section class="steps">
+        <div class="section-title" style="margin-bottom:12px;">Как поддержать участника</div>
+        <div class="step-item">
+            <div class="step-num">1</div>
+            <div>Выберите понравившегося участника из списка выше.</div>
+        </div>
+        <div class="step-item">
+            <div class="step-num">2</div>
+            <div>Нажмите кнопку «Проголосовать» — вы перейдёте на страницу голосования.</div>
+        </div>
+        <div class="step-item">
+            <div class="step-num">3</div>
+            <div>Поделитесь конкурсом с друзьями и близкими.</div>
+        </div>
+        <div class="step-item">
+            <div class="step-num">4</div>
+            <div>Следите за результатами — итоги будут объявлены 1 января!</div>
+        </div>
+    </section>
+
+    <!-- ===== ОТЗЫВЫ ===== -->
+    <section class="reviews">
+        <div class="section-title" style="margin-bottom:12px;">💬 Отзывы участников</div>
+        <div class="review-item">
+            <div class="review-header">
+                <div class="review-avatar">М</div>
+                <div class="review-name">Марина К.</div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-text">«Сертификат на тюбинги — лучший подарок! Мы с семьёй катались всей компанией, дети в восторге. Спасибо организаторам!»</div>
+            <div class="review-date">2 дня назад</div>
+        </div>
+        <div class="review-item">
+            <div class="review-header">
+                <div class="review-avatar">А</div>
+                <div class="review-name">Алексей П.</div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-text">«Голосовал за друга — и он выиграл поездку в Шерегеш! Незабываемые выходные, горы, снег и драйв. Всем рекомендую участвовать.»</div>
+            <div class="review-date">5 дней назад</div>
+        </div>
+        <div class="review-item">
+            <div class="review-header">
+                <div class="review-avatar">Е</div>
+                <div class="review-name">Екатерина С.</div>
+                <div class="review-stars">★★★★☆</div>
+            </div>
+            <div class="review-text">«Очень удобно, что сертификат можно подарить — вручила мужу на 23 февраля, он был счастлив. Теперь ждём следующий конкурс!»</div>
+            <div class="review-date">неделю назад</div>
+        </div>
+        <div class="review-item">
+            <div class="review-header">
+                <div class="review-avatar">Д</div>
+                <div class="review-name">Денис В.</div>
+                <div class="review-stars">★★★★★</div>
+            </div>
+            <div class="review-text">«Кнопка голосования просто огонь — нажимается приятно, анимация радует глаз. Проголосовал за коллегу, он в топе!»</div>
+            <div class="review-date">3 дня назад</div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <div class="cta-bottom">
+        <strong>ПУСТЬ ПОБЕДИТ САМЫЙ АКТИВНЫЙ!</strong>
+        <span>Удачи всем участникам и отличного зимнего настроения!</span>
+    </div>
+
+    <!-- ===== ФУТЕР ===== -->
+    <div class="footer">
+        Организатор: Администрация сообщества.<br>
+        Условия конкурса публикуются организатором.
+    </div>
+
+</div>
+
+<!-- ===== МУЗЫКАЛЬНАЯ КНОПКА ===== -->
+<button class="music-toggle" id="musicBtn" title="Включить/выключить музыку">🔊</button>
+
+<audio id="bgMusic" loop preload="metadata">
+    <source src="https://zvukitop.com/wp-content/uploads/2020/12/we-wish-you-a-merry.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // ===== ТАЙМЕР ДО 31 ДЕКАБРЯ 2026, 23:59:59 =====
+    (function() {
+        var end = new Date(2026, 11, 31, 23, 59, 59);
+        var elDays = document.getElementById('hours');
+        var elHours = document.getElementById('hours2');
+        var elMinutes = document.getElementById('minutes');
+        var elSeconds = document.getElementById('seconds');
+        var elNote = document.getElementById('timerNote');
+
+        function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+        function tick() {
+            var diff = Math.max(0, end - Date.now());
+            if (diff <= 0) {
+                elDays.textContent = '00';
+                elHours.textContent = '00';
+                elMinutes.textContent = '00';
+                elSeconds.textContent = '00';
+                elNote.innerHTML = '🎉 <strong>Голосование завершено!</strong> Спасибо всем за участие!';
+                return;
+            }
+            elDays.textContent = pad(Math.floor(diff / 86400000));
+            elHours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+            elMinutes.textContent = pad(Math.floor((diff % 3600000) / 60000));
+            elSeconds.textContent = pad(Math.floor((diff % 60000) / 1000));
+        }
+
+        // Первый запуск после отрисовки страницы — не блокируем рендер
+        if ('requestAnimationFrame' in window) {
+            requestAnimationFrame(function() {
+                tick();
+                setInterval(tick, 1000);
+            });
+        } else {
+            tick();
+            setInterval(tick, 1000);
+        }
+    })();
+
+    // ===== МУЗЫКА: АВТОЗАПУСК + ПЛАВНЫЙ FADE IN + FALLBACK =====
+    (function() {
+        var btn = document.getElementById('musicBtn');
+        var audio = document.getElementById('bgMusic');
+        audio.volume = 0;
+        var playing = false;
+        var fadeInterval = null;
+        var MAX_VOL = 0.3;
+
+        function fadeIn(target, duration) {
+            clearInterval(fadeInterval);
+            var start = audio.volume;
+            var steps = Math.max(1, Math.round(duration / 50));
+            var step = (target - start) / steps;
+            var i = 0;
+            fadeInterval = setInterval(function() {
+                i++;
+                audio.volume = Math.min(MAX_VOL, Math.max(0, start + step * i));
+                if (i >= steps || audio.volume >= MAX_VOL) {
+                    clearInterval(fadeInterval);
+                    audio.volume = MAX_VOL;
+                }
+            }, 50);
+        }
+
+        function fadeOut(duration) {
+            clearInterval(fadeInterval);
+            var start = audio.volume;
+            var steps = Math.max(1, Math.round(duration / 50));
+            var step = start / steps;
+            var i = 0;
+            fadeInterval = setInterval(function() {
+                i++;
+                audio.volume = Math.max(0, start - step * i);
+                if (i >= steps) {
+                    clearInterval(fadeInterval);
+                    audio.pause();
+                }
+            }, 50);
+        }
+
+        function startMusic() {
+            audio.volume = 0;
+            var p = audio.play();
+            if (p && p.then) {
+                p.then(function() {
+                    playing = true;
+                    btn.textContent = '🔊';
+                    btn.classList.add('playing');
+                    fadeIn(MAX_VOL, 2000);
+                }).catch(function() {
+                    playing = false;
+                    btn.textContent = '🎵';
+                    btn.classList.remove('playing');
+                });
+            }
+        }
+
+        startMusic();
+
+        // Fallback: включение музыки при первом действии, если автозапуск заблокирован
+        function firstInteraction() {
+            if (!playing) startMusic();
+            document.removeEventListener('click', firstInteraction);
+            document.removeEventListener('touchstart', firstInteraction);
+            document.removeEventListener('keydown', firstInteraction);
+            document.removeEventListener('scroll', firstInteraction);
+        }
+        document.addEventListener('click', firstInteraction);
+        document.addEventListener('touchstart', firstInteraction);
+        document.addEventListener('keydown', firstInteraction);
+        document.addEventListener('scroll', firstInteraction, { passive: true });
+
+        // Кнопка вкл/выкл
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (playing) {
+                fadeOut(600);
+                playing = false;
+                btn.textContent = '🎵';
+                btn.classList.remove('playing');
+            } else {
+                audio.volume = 0;
+                var p = audio.play();
+                if (p && p.then) {
+                    p.then(function() {
+                        playing = true;
+                        btn.textContent = '🔊';
+                        btn.classList.add('playing');
+                        fadeIn(MAX_VOL, 1200);
+                    }).catch(function(){});
+                }
+            }
+        });
+    })();
+</script>
+
+</body>
+</html>
